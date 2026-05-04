@@ -7,7 +7,20 @@ api_key = st.text_input("Enter your Google Gemini API Key:", type="password")
 
 if api_key:
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    import streamlit as st
+import google.generativeai as genai
+
+# Configure genai (ensure this happens before calling list_models)
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+st.subheader("Debug: Available Models")
+found_models = []
+for m in genai.list_models():
+    if 'generateContent' in m.supported_generation_methods:
+        found_models.append(m.name)
+        st.write(f"Available Model: {m.name}")
+
+st.info("Copy one of the model names above and use it in your code.")
     tab1, tab2 = st.tabs(["Grade My Work", "Generate Quiz"])
 
     with tab1:
