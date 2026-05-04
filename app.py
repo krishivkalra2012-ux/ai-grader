@@ -9,10 +9,7 @@ if api_key:
     genai.configure(api_key=api_key)
     import streamlit as st
 import google.generativeai as genai
-
-# Configure genai (ensure this happens before calling list_models)
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-
 st.subheader("Debug: Available Models")
 found_models = []
 for m in genai.list_models():
