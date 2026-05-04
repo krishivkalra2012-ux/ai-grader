@@ -7,7 +7,7 @@ api_key = st.text_input("Enter your Google Gemini API Key:", type="password")
 
 if api_key:
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-1.5-flash-latest')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     tab1, tab2 = st.tabs(["Grade My Work", "Generate Quiz"])
 
     with tab1:
